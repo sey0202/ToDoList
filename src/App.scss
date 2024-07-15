@@ -5,6 +5,7 @@ $primary-color: #5e71ff;
 *{
     margin: 0;
     padding: 0;
+    word-break: break-all;
 }
 
 input[type="checkbox"]{
@@ -29,7 +30,7 @@ input[type="checkbox"]:checked  + label{
   width: 400px;
   padding: 30px;
   box-sizing: border-box;
-  margin: 0 auto;
+  margin: 60px auto;
 }
 
 h1 {
@@ -88,4 +89,23 @@ ul{
   font-weight: bolder;
 }
 
+@media screen and (max-width: 767px) {
+  /** Mobile */
+  .container{
+    width: 80%;
+  }
+}
 
+@media all and (min-width: 768px) and (max-width: 1023px) {
+  /** Tablet  */
+  .container{
+    width: 80%;
+  }
+}
+
+@media all and (max-width: 1023px) {
+  /** Mobile & Tablet  */
+  .container{
+    width: 80%;
+  }
+}
