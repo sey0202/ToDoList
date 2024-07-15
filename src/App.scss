@@ -69,6 +69,7 @@ ul{
     li{
         list-style: none;
         margin-bottom: 10px;
+        position: relative;
         
     }
 
@@ -80,3 +81,11 @@ ul{
 
     }
 }
+
+.date{
+  text-align: center;
+  color: $primary-color;
+  font-weight: bolder;
+}
+
+

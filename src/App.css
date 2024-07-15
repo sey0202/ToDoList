@@ -64,10 +64,17 @@ form button {
 ul li {
   list-style: none;
   margin-bottom: 10px;
+  position: relative;
 }
 ul .deleteBtn {
   border: none;
   background: none;
   cursor: pointer;
   margin-left: 6px;
+}
+
+.date {
+  text-align: center;
+  color: #5e71ff;
+  font-weight: bolder;
 }/*# sourceMappingURL=App.css.map */
