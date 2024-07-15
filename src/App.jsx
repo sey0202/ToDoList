@@ -1,7 +1,23 @@
 import { useEffect, useRef, useState } from "react";
 import "./App.scss";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
+
+  const notify = () => toast('✅ 체크 후 삭제 가능', { style: customStyle });
+
+  const customStyle = {
+    minHeight: '40px',
+  };
+
+
+
+  // 현재 날짜를 가져옵니다.
+  const today = new Date();
+  // 원하는 형식으로 날짜를 설정합니다.
+  const formattedDate = `${today.getFullYear()}년 ${today.getMonth() + 1}월 ${today.getDate()}일`;
+
   const ref = useRef();
 
   //할 일 목록
@@ -20,7 +36,10 @@ function App() {
   //할 일 입력 함수
   const addItem = (e) => {
     e.preventDefault();
-    setToDoList([...toDoList, { id: crypto.randomUUID(), task: ref.current.value, completed: false }]);
+    //참고 : trim()은 원래 문자열 앞 뒤의 공백을 없애주는 함수
+    const task = ref.current.value.trim();
+    if (!task) return; // 입력값이 공백이면 함수 종료
+    setToDoList([...toDoList, { id: crypto.randomUUID(), task: task, completed: false }]);
     ref.current.value = null;
   };
 
@@ -56,6 +75,8 @@ function App() {
 
   return (
     <div className="container">
+      <div className="date"> {formattedDate}</div>
+
       <h1>To Do List</h1>
       <form onSubmit={addItem}>
         <input type="text" placeholder="할 일을 입력하세요." ref={ref} />
@@ -69,9 +90,24 @@ function App() {
             <label style={item.completed ? doneStyle : doingStyle} htmlFor={`chk${item.id}`}>
               {item.task}
             </label>
-            <button className="deleteBtn" onClick={(e) => deleteItem(item.id)}>
-              ❌
-            </button>
+            <button
+              className="deleteBtn"
+              onClick={(e) => {
+                deleteItem(item.id);
+                notify();
+              }}>❌</button>
+
+
+            <ToastContainer style={{fontSize: "12px", minHeight: "20px"}}
+              position="bottom-center"
+              autoClose={2000}
+              hideProgressBar
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              theme="dark"
+              limit={1}
+            />
           </li>
         ))}
       </ul>
