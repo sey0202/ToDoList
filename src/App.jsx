@@ -1,18 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import "./App.scss";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 function App() {
-
-
   const myUUID = uuidv4();
-
-  const notify = () => toast("✅ 체크 후 삭제 가능", { style: customStyle });
-  const customStyle = {
-    minHeight: "40px",
-  };
 
   // 현재 날짜를 가져옵니다.
   const today = new Date();
@@ -41,7 +32,7 @@ function App() {
     const task = ref.current.value.trim();
     if (!task) return; // 입력값이 공백이면 함수 종료
     setToDoList([...toDoList, { id: uuidv4(), task: task, completed: false }]);
-    
+
     //입력완료 후 다음 입력을 위해 입력창을 비워줌
     ref.current.value = null;
   };
@@ -102,18 +93,6 @@ function App() {
             >
               ❌
             </button>
-
-            <ToastContainer
-              style={{ fontSize: "12px", minHeight: "20px" }}
-              position="bottom-center"
-              autoClose={2000}
-              hideProgressBar
-              newestOnTop={false}
-              closeOnClick
-              rtl={false}
-              theme="dark"
-              limit={1}
-            />
           </li>
         ))}
       </ul>
